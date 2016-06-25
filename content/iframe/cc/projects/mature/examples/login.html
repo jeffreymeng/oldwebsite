@@ -1,0 +1,53 @@
+<html>
+    <head>
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script> 
+    $(document).ready(setup);   
+    var users = ["jmeng", "password12", "dude", "12345"];
+
+    function login() {
+        var username = $("#userid").val().toLowerCase()
+        var password = $("#password").val();
+        for (i = 0; i < users.length; i = i + 2) {
+            if (username === users[i] && password === users[i + 1]) {
+                prompt("you are signed in")
+                return [true, username]
+
+            } else {
+                return [false, username]
+            }
+        };
+    };
+    function In(string, array) {
+        return (array.indexOf(string.toString() > -1)//return true or false
+    };
+    function setup() {
+        $("#center").click(add1())
+        $("#enter").click(login())
+    };
+    </script>
+    </head>
+    <body>
+          <div id="login">
+          userid
+          <input type="text"name="text1" id="username">
+          <br>password
+          <input type"password" name="text2" id="password">
+          <br>
+          <input type="submit"name="button1" id="enter">
+          <a id="cuser">Create a user instead</a>
+        </div>
+        <div id="cuser">
+            <p>create a user: will be deleted after you close your browser.</p>
+                      <div id="login">
+          choose a username:
+          <input type="text"name="text1" id="cusername">
+          <br>password:
+          <input type"password" name="text2" type="password" id="cpassword">
+          <br>
+          <input type="submit"name="button1" id="center">
+            <script>
+            function add1() {if(!(In(users, $("cusername")))) {alert("Your username is already taken")} else{users.push($("cusername"));users.push($("#cpassword"));};}</script>
+        </div>
+    </body>
+</html>

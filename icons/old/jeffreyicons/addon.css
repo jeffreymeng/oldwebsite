@@ -1,0 +1,105 @@
+
+/* makes the font 33% larger relative to the ji container */
+.ji-lg {
+  font-size: 1.33333333em;
+  line-height: 0.75em;
+  vertical-align: -15%;
+}
+.ji-2x {
+  font-size: 2em;
+}
+.ji-3x {
+  font-size: 3em;
+}
+.ji-4x {
+  font-size: 4em;
+}
+.ji-5x {
+  font-size: 5em;
+}
+.ji-fw {
+  width: 1.28571429em;
+  text-align: center;
+}
+.ji-ul {
+  padding-left: 0;
+  margin-left: 2.14285714em;
+  list-style-type: none;
+}
+.ji-ul > li {
+  position: relative;
+}
+.ji-li {
+  position: absolute;
+  left: -2.14285714em;
+  width: 2.14285714em;
+  top: 0.14285714em;
+  text-align: center;
+}
+.ji-li.ji-lg {
+  left: -1.85714286em;
+}
+.ji-border {
+  padding: .2em .25em .15em;
+  border: solid 0.08em #eeeeee;
+  border-radius: .1em;
+}
+.ji-pull-left {
+  float: left;
+}
+.ji-pull-right {
+  float: right;
+}
+.ji.ji-pull-left {
+  margin-right: .3em;
+}
+.ji.ji-pull-right {
+  margin-left: .3em;
+}
+/* Deprecated as of 4.4.0 */
+/*
+.pull-right {
+  float: right;
+}
+.pull-left {
+  float: left;
+}
+*/
+.ji.pull-left {
+  margin-right: .3em;
+}
+.ji.pull-right {
+  margin-left: .3em;
+}
+
+:root .ji-rotate-90,
+:root .ji-rotate-180,
+:root .ji-rotate-270,
+:root .ji-flip-horizontal,
+:root .ji-flip-vertical {
+  filter: none;
+}
+.ji-stack {
+  position: relative;
+  display: inline-block;
+  width: 2em;
+  height: 2em;
+  line-height: 2em;
+  vertical-align: middle;
+}
+.ji-stack-1x,
+.ji-stack-2x {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  text-align: center;
+}
+.ji-stack-1x {
+  line-height: inherit;
+}
+.ji-stack-2x {
+  font-size: 2em;
+}
+.ji-inverse {
+  color: #ffffff;
+}

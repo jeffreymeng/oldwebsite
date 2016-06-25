@@ -1,0 +1,14 @@
+<a>Python</a>, <a>JavaScript</a>, or <a>HTML</a>
+<button onclick="updateHTML">Update</button>
+<textarea id="mycode"></textarea>
+
+<iframe id="display"></iframe>
+
+<script>
+
+function updateHTML() {
+	var x = $('mycode').val();
+	$("display").val(x);
+}
+
+</script>

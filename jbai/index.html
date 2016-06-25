@@ -1,0 +1,52 @@
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+
+		
+	</head>
+	<body>
+		
+		<div class="container">
+			<div class="col-lg-12" style="margin-top:18px;">
+				<h1>Welcome to JeffbotAI</h1>
+				<p>JeffbotAI is a program designed to imitate an artifical intellegence system and control all the diffrent ways a person can ask a question with the same meaning.</p>
+				<p class="text-muted">Currently in development.</p> 
+				<div id="output" style="height:75%;">
+
+				</div>
+				<input placeholder="question" class="form-control" id="question">
+				<br>
+				<button class="btn btn-success form-control" id="submit">Ask JeffbotAI</button>
+			</div>
+		</div>	
+
+		<script src="/js/jquery.js"></script>
+
+		<script src="/js/bootstrap.min.js"></script>
+		<script>
+			$("#submit").click(onclick);
+			function onclick() {
+				var question = $("#question").val();
+				var answer = respond(question);
+				$("#output").append('<p class="text-' + answer.answerType + '">' + answer.answer + "</p>");
+			}
+			function respond(question) {
+			    var answer = "Sorry, I dont understand your question.";  // hi
+			    var answerType = "muted";
+				var inventions = {
+					"bob":"lob",
+					"joe":"hoe",
+					"billy":"nilly"
+				};
+				var split = question.split(" ");
+				if (split === "test") {
+				    alert("hi");
+				} 
+				return {
+					answerType:answerType,
+					answer:answer
+				};
+			}
+		</script>
+	</body>
+</html>

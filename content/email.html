@@ -1,0 +1,23 @@
+<script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
+<script src="https:////code.jquery.com/jquery-1.11.3.min.js"></script>
+
+<script>
+var fb = new Firebase("https://jeffreymeng.firebaseio.com");
+
+function getQuery(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+        results = regex.exec(location.search);
+    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "))
+};
+if (getQuery("handler") === "mail/gmail" && getQuery("id") === "ajoepjms134" && getQuery("key") === "exoadsa" ) {
+    var path = getQuery("path")
+    var redirect = getQuery("redirect")
+    var data = getQuery("data")
+    if (getQuery("email"))
+    fb.child(path).set(data);
+    
+}
+</script>
+<h1>Email</h1>
+<p id="info">Loading</p>

@@ -1,0 +1,27 @@
+<!-- URL for login: https://accounts.google.com/o/oauth2/auth?response_type=token&scope=profile&redirect_uri=http%3A%2F%2Fjeffreymeng.github.io&client_id=181659339892-5h75t4ubpp2lfoqn5q504ivp02lc7sqe.apps.googleusercontent.com -->
+<html>
+    <head>
+<meta name="google-signin-client_id" content="81659339892-5h75t4ubpp2lfoqn5q504ivp02lc7sqe.apps.googleusercontent.com">
+
+<script src="https://apis.google.com/js/platform.js" async defer></script><script>
+function onSignIn(googleUser) {
+  var profile = googleUser.getBasicProfile();
+  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+  console.log('Name: ' + profile.getName());
+  console.log('Image URL: ' + profile.getImageUrl());
+  console.log('Email: ' + profile.getEmail());
+  function signOut() {
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function () {
+      console.log('User signed out.');
+    });
+  }
+</script>
+    </head>
+    <body>
+<h1>Google Login</h1>
+<div class="g-signin2" data-onsuccess="onSignIn"></div>
+<a href="#" onclick="signOut();">Sign out</a>
+
+    </body>
+</html>
