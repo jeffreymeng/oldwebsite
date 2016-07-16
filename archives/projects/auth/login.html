@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html >
+  <head>
+    <meta charset="UTF-8">
+    <title>Login Form Material Design</title>
+    <!--=======Font Open Sans======-->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <!--=======Login Style======-->
+    <link rel="stylesheet" href="css/login.css">
+    <style>
+      .hidden {
+        display:none;
+        visibility:hidden;
+      }
+    </style>
+  </head>
+  <body>
+  <div class="form-box">
+    <div class="head">Welcome Back</div>        
+    <div action="#" id="login-form">
+        <div class="login-form-group">
+          <label class="label-control">
+            <span class="label-text">Email</span>
+          </label>
+          <input type="email" id="email-input" class="login-form-control" />
+        </div>
+        <div class="login-form-group">
+          <label class="label-control">
+            <span class="label-text">Password</span>
+          </label> 
+          <input type="password" id="password-input" class="login-form-control" />
+        </div>
+        <div class="login-form-group hidden" id="confirm-password">
+          <label class="label-control">
+            <span class="label-text">Confirm Password</span>
+          </label> 
+          <input type="password" id="confirm-password-input" class="login-form-control" />
+        </div>
+        <input id="submit" value="Login" class="btn" />
+        <p class="text-p" id="signup">Don't have an account? <a id="signup">Sign up!</a> </p>
+        <p class="text-p" class="hidden" id="signup">Already have an account? <a id="login">Login.</a> </p>
+    </div>
+  </div>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+    <script src="../js/auth.js"></script>
+
+<script>
+/* global jauth $ */
+  // Initialize jauth
+  var config = {
+    apiKey: "AIzaSyBjd9WSwZZR7zU3XHQodOQbSNoEar3aSqA",
+    authDomain: "jeffreyauth.firebaseapp.com",
+    databaseURL: "https://jeffreyauth.firebaseio.com",
+    storageBucket: "project-4619681356128759186.appspot.com",
+  };
+  $("#signup").click(function(){
+    
+  });
+  $("#login").click(function(){
+    
+  });
+  jauth.init(config);
+  $("#")
+</script>
+<script type="text/javascript">
+/* global $ */
+
+$(window).load(function(){
+  $('.form-group input').on('focus blur', function (e) {
+      $(this).parents('.form-group').toggleClass('active', (e.type === 'focus' || this.value.length > 0));
+  }).trigger('blur');
+});
+
+</script>
+</body>
+</html>
+
+               

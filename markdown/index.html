@@ -10,13 +10,13 @@
         <title>Jeffrey Meng - Template</title>
     
         <!-- Bootstrap Core CSS -->
-        <link href="/css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
     
         <!-- Custom CSS -->
-        <link href="/css/agency.css" rel="stylesheet">
+        <link href="../css/agency.css" rel="stylesheet">
     
         <!-- Custom Fonts -->
-        <link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
         <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet" type="text/css">
         <link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic" rel="stylesheet" type="text/css">
@@ -28,7 +28,11 @@
             <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
             <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
-    
+    <style>
+    #markdown {
+        margin-top:80px;
+    }
+    </style>
     </head>
     
     <body id="page-top" class="index">
@@ -80,19 +84,10 @@
             </div>
         </header> -->
     
-        <section>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12 text-center">
-                        <h2 class="section-heading">Header</h2>
-                        <p>Text</p>
-                        <p>     Hello put some content here. This is my standard template page.         </p>
-                    </div>
-                </div>
-            </div>
-        </section>
+        <div class="col-lg-12" id="markdown"></div>
     
-    
+        <hr>
+        <p>Courtesy of Jeffrey's Markdown Viewer</p>
         <footer>
             <div class="container ">
                 <div class="row">
@@ -119,19 +114,41 @@
         </footer>
     
         <!-- jQuery -->
-        <script src="/js/jquery.min.js"></script>
+        <script src="../js/jquery.min.js"></script>
     
         <!-- Bootstrap Core JavaScript -->
-        <script src="/js/bootstrap.min.js"></script>
+        <script src="../js/bootstrap.min.js"></script>
     
         <!-- Plugin JavaScript -->
-        <script src="/js/jquery.easing.min.js"></script>
-        <script src="/js/classie.js"></script>
+        <script src="../js/jquery.easing.min.js"></script>
+        <script src="../js/classie.js"></script>
 
         <!-- Custom Theme JavaScript -->
-        <script src="/js/agency.js"></script>
-
+        <script src="../js/agency.js"></script>
+        <!-- Showdown -->
+        <script src="../js/showdown.min.js"></script>
+        <script>
+        /*
+        $.ajax({
+  url: "../tinymce/dev/readme.md",
+  success: function(text){
+   
+    converter.makeHtml(text);
     
+    $("#markdown").html(html)
+  },
+  dataType: "text"
+});
+        */
+        var converter = new showdown.Converter()
+
+
+     var text = 'TinyMCE - The JavaScript Rich Text editor\n==========================================\n\nBuilding TinyMCE\n-----------------\n1. Install Node.js\n2. Open a console and go to the project directory\n3. Write "npm i -g grunt-cli" to install the grunt command line tool globally.\n4. Write "npm i" to install all package dependencies.\n4. Build TinyMCE by writing "grunt"\n\nBuild tasks\n------------\n`grunt`\nLints, minified, unit tests and creates release packages for TinyMCE.\n\n`grunt minify`\nMinifies all JS and CSS files.\n\n`grunt test`\nRuns all qunit tests on PhantomJS.\n\n`grunt lint`\nRuns all source files though various JS linters.\n\n`grunt sc-test`\nRuns all qunit tests on Saucelabs.\n\n`grunt watch\nWatches for source code changes and triggers rebuilds and linting.\n\n`grunt --help`\nDisplays the various build tasks.\n\nBundle themes and plugins into a single file\n---------------------------------------------\n`grunt bundle --themes modern --plugins table,paste`\nMinifies the core, adds the modern theme and adds the table and paste plugin into tinymce.min.js.\n\nContributing to the TinyMCE project\n------------------------------------\nTinyMCE is an open source software project and we encourage developers to contribute patches and code for us to include in the main package of TinyMCE.\n\n__Basic Rules__\n\n* Contributed code will be licensed under the LGPL license but not limited to LGPL.\n* Copyright notices will be changed to Ephox Corporation, contributors will get credit for their work.\n* All third party code will be reviewed, tested and possibly modified before being released.\n* All contributors will have to have signed the Contributor License Agreement.\n\nThese basic rules ensures that the contributed code remains open source and under the LGPL license.\n\n__How to Contribute__\n\nThe TinyMCE source code is [hosted on Github](http://github.com/tinymce/tinymce). Through Github you can submit pull requests and log new bugs and feature requests.\n\nWhen you submit a pull request, you will get a notice about signing the __Contributors License Agreement (CLA)__.\nYou should have a __valid email address on your GitHub account__, and you will be sent a key to verify your identity and digitally sign the agreement.\nAfter you signed your pull request will automatically be ready for review & merge.\n\n[![Build Status](https://travis-ci.org/tinymce/tinymce.png?branch=master)](https://travis-ci.org/tinymce/tinymce)';
+    var html      = converter.makeHtml(text);
+    
+    $("#markdown").html(html)
+    
+        </script>
     
     </body>
 </html>
