@@ -133,10 +133,7 @@
         $.ajax({
   url: getQuery("url") || "#file not found\nto use this markdown viewer, you must specify the url of the markdown uwing the query parameter url. For example, a url could look like this: *https://jeffkmeng.com/markdown/?url=<the url of the markdown you want to use, after being encoded with encodeURIComponent in javascript>*",
   success: function(text){
-   
-    converter.makeHtml(text);
-    
-    $("#markdown").html(html)
+    $("#markdown").html(converter.makeHtml(text))
   },
   dataType: "text"
 });
