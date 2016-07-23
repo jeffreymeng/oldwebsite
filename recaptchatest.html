@@ -89,14 +89,14 @@
                     <div class="">
                         
                         <!-- BEGIN: ReCAPTCHA implementation example. -->
-                        <div class="g-recaptcha" data-sitekey="6Lf6uiQTAAAAAAsM_0VWIPIMD616DyaN54KHkZex"></div>
-                        <form action="">
-                          <div id="example1"></div>
+                        
+                        <form action="http://api.jeffkmeng.com/recaptcha.php">
+                          <div class="g-recaptcha"  data-sitekey="6LfG0CUTAAAAAPB712-Ns0JbFE3cbWp60Vs78zWu"></div>
                           <br>
-                          <input type="submit" value="getResponse">
+                          <input type="submit" class="btn btn-primary" value="getResponse">
                         </form>
                         <!-- End of DEMO -->
-                        <p>Result: <span id="result"></span></p>
+                        
                     </div>
                 </div>
             </div>
@@ -143,20 +143,6 @@
     <!-- Custom Theme JavaScript -->
     <script src="/js/agency.js"></script>
 
-    <script>
-    $.ajax({
-        url:"https://www.google.com/recaptcha/api/siteverify", 
-        data:{
-            response:grecaptcha.getResponse(),
-            secret:"6Lf6uiQTAAAAACUEumpKyiFQRvPDk-axZHMpPixO"
-        },
-        type:"json",
-        data:function(json) {
-            $("#result").html(json.success);
-        }
-    });
-        
-    </script>
 
 </body>
 
