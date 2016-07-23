@@ -26,7 +26,8 @@ $('.navbar-collapse ul li a').click(function() {
 });
 
 // end of bootstrap theme
-//custom code
+//custom code below is copyright 2016 Jeffrey Meng and other authors.
+//getQuery - http://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript/901144#901144
 function getQuery(name, url) {
     if (!url) url = window.location.href;
     name = name.replace(/[\[\]]/g, "\\$&");
