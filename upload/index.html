@@ -85,7 +85,11 @@
                 <div class="row">
                     <div class="col-lg-12 text-center">
                         <h2 class="section-heading">Upload Test</h2>
-                        <input type="file" id="file">
+                        <p>Select a file below. When it is uploaded, a link will be displayed to the uploaded file.</p>
+            <h6>Choose File</h6>
+            <input type="file" id="file" name="file"/>
+            <h6>File URL:</h6>
+            <span id="linkbox"></span>
                     </div>
                 </div>
             </div>
@@ -143,7 +147,7 @@
         </script>
     
         <script>
-            var selectedFile = $('#input').get(0).files[0];
+           
     var auth = firebase.auth();
     var storageRef = firebase.storage().ref();
     function handleFileSelect(evt) {
