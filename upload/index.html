@@ -23,7 +23,7 @@
     <link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css">
 
-    <link href="/css/upload.css" rel="stylesheet" type="text/css">
+    <link href="upload.css" rel="stylesheet" type="text/css">
 
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -172,115 +172,8 @@
         firebase.initializeApp(config);
     </script>
     <script>
-        'use strict';
-
-        ;
-        (function($, window, document) {
-            // feature detection for drag&drop upload
-
-            var isAdvancedUpload = function() {
-                var div = document.createElement('div');
-                return (('draggable' in div) || ('ondragstart' in div && 'ondrop' in div)) && 'FormData' in window && 'FileReader' in window;
-            }();
-
-
-            // applying the effect for every form
-
-            $('.box').each(function() {
-                var $form = $(this),
-                    $input = $form.find('input[type="file"]'),
-                    $label = $form.find('label'),
-                    $errorMsg = $form.find('.box__error span'),
-                    $restart = $form.find('.box__restart'),
-                    droppedFiles = false,
-                    showFiles = function(files) {
-                        $label.text(files.length > 1 ? ($input.attr('data-multiple-caption') || '').replace('{count}', files.length) : files[0].name);
-                    };
-
-                // automatically submit the form on file select
-                $input.on('change', function(e) {
-                    showFiles(e.target.files);
-
-
-                });
-
-
-                // drag&drop files if the feature is available
-                if (isAdvancedUpload) {
-                    $form
-                        .addClass('has-advanced-upload') // letting the CSS part to know drag&drop is supported by the browser
-                        .on('drag dragstart dragend dragover dragenter dragleave drop', function(e) {
-                            // preventing the unwanted behaviours
-                            e.preventDefault();
-                            e.stopPropagation();
-                        })
-                        .on('dragover dragenter', function() //
-                            {
-                                $form.addClass('is-dragover');
-                            })
-                        .on('dragleave dragend drop', function() {
-                            $form.removeClass('is-dragover');
-                        })
-                        .on('drop', function(e) {
-                            droppedFiles = e.originalEvent.dataTransfer.files; // the files that were dropped
-                            showFiles(droppedFiles);
-
-
-                        });
-                }
-
-
-                // if the form was submitted
-
-                $form.on('submit', function(e) {
-                    // preventing the duplicate submissions if the current one is in progress
-                    if ($form.hasClass('is-uploading')) return false;
-
-                    $form.addClass('is-uploading').removeClass('is-error');
-                    e.preventDefault();
-                    // ajax request
-                    var selectedFile = $('#input').files[0];
-
-                    var metadata = {
-                        'contentType': file.type
-                    };
-                    storageRef.child('images/' + file.name).put(file, metadata).then(function(snapshot) {
-                        console.log('Uploaded', snapshot.totalBytes, 'bytes.');
-                        console.log(snapshot.metadata);
-                        var url = snapshot.metadata.downloadURLs[0];
-                        $form.removeClass("is-uploading").addClass("is-success");
-                        console.log('File available at', url);
-                        document.getElementById('linkbox').innerHTML = '<a href="' + url + '">' + url + '</a>';
-                    }).catch(function(error) {
-                        console.error('Upload failed:', error);
-                    });
-
-
-                });
-
-
-                // restart the form if has a state of error/success
-
-                $restart.on('click', function(e) {
-                    e.preventDefault();
-                    $form.removeClass('is-error is-success');
-                    $input.trigger('click');
-                });
-
-                // Firefox focus bug fix for file input
-                $input
-                    .on('focus', function() {
-                        $input.addClass('has-focus');
-                    })
-                    .on('blur', function() {
-                        $input.removeClass('has-focus');
-                    });
-            });
-
-        })(jQuery, window, document);
-    </script>
-    <script>
-
+        var auth = firebase.auth();
+        var storageRef = firebase.storage().ref();
         window.onload = function() {
             auth.onAuthStateChanged(function(user) {
                 if (user) {
@@ -294,6 +187,107 @@
                 }
             });
         }
+
+        // feature detection for drag&drop upload
+
+        var isAdvancedUpload = function() {
+            var div = document.createElement('div');
+            return (('draggable' in div) || ('ondragstart' in div && 'ondrop' in div)) && 'FormData' in window && 'FileReader' in window;
+        }();
+
+
+        // applying the effect for every form
+
+        $('.box').each(function() {
+            var $form = $(this),
+                $input = $form.find('input[type="file"]'),
+                $label = $form.find('label'),
+                $errorMsg = $form.find('.box__error span'),
+                $restart = $form.find('.box__restart'),
+                droppedFiles = false,
+                showFiles = function(files) {
+                    $label.text(files.length > 1 ? ($input.attr('data-multiple-caption') || '').replace('{count}', files.length) : files[0].name);
+                };
+
+            // automatically submit the form on file select
+            $input.on('change', function(e) {
+                showFiles(e.target.files);
+
+
+            });
+
+
+            // drag&drop files if the feature is available
+            if (isAdvancedUpload) {
+                $form
+                    .addClass('has-advanced-upload') // letting the CSS part to know drag&drop is supported by the browser
+                    .on('drag dragstart dragend dragover dragenter dragleave drop', function(e) {
+                        // preventing the unwanted behaviours
+                        e.preventDefault();
+                        e.stopPropagation();
+                    })
+                    .on('dragover dragenter', function() //
+                        {
+                            $form.addClass('is-dragover');
+                        })
+                    .on('dragleave dragend drop', function() {
+                        $form.removeClass('is-dragover');
+                    })
+                    .on('drop', function(e) {
+                        droppedFiles = e.originalEvent.dataTransfer.files; // the files that were dropped
+                        showFiles(droppedFiles);
+
+
+                    });
+            }
+
+
+            // if the form was submitted
+
+            $form.on('submit', function(e) {
+                // preventing the duplicate submissions if the current one is in progress
+                if ($form.hasClass('is-uploading')) return false;
+
+                $form.addClass('is-uploading').removeClass('is-error');
+                e.preventDefault();
+                // ajax request
+                var selectedFile = $('#input').files[0];
+
+                var metadata = {
+                    'contentType': file.type
+                };
+                storageRef.child('images/' + file.name).put(file, metadata).then(function(snapshot) {
+                    console.log('Uploaded', snapshot.totalBytes, 'bytes.');
+                    console.log(snapshot.metadata);
+                    var url = snapshot.metadata.downloadURLs[0];
+                    $form.removeClass("is-uploading").addClass("is-success");
+                    console.log('File available at', url);
+                    document.getElementById('linkbox').innerHTML = '<a href="' + url + '">' + url + '</a>';
+                }).catch(function(error) {
+                    console.error('Upload failed:', error);
+                });
+
+
+            });
+
+
+            // restart the form if has a state of error/success
+
+            $restart.on('click', function(e) {
+                e.preventDefault();
+                $form.removeClass('is-error is-success');
+                $input.trigger('click');
+            });
+
+            // Firefox focus bug fix for file input
+            $input
+                .on('focus', function() {
+                    $input.addClass('has-focus');
+                })
+                .on('blur', function() {
+                    $input.removeClass('has-focus');
+                });
+        });
     </script>
 
 
