@@ -8,5 +8,5 @@
     if (!results[2]) return '';
     return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
-window.location.href = "https://www.google.com/?ion=1&espv=2#q=" + getQuery("q");
+window.location.href = "https://www.google.com/#q=" + encodeURIComponent(getQuery("q") )+ "&rct=j";
 </script>
