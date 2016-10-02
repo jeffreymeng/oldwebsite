@@ -1,2 +1,2 @@
 //test js file
-alert("hi");
+console.log("hi");
