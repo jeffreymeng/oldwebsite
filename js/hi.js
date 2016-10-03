@@ -1,2 +1,4 @@
 //test js file
-console.log("hi");
+function hi(name) {
+  console.log("Hi, " + name);
+}
