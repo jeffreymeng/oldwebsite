@@ -1,0 +1,79 @@
+dice.js test page. Open console to test.
+<script>
+    (function(window) {
+    //I recommend this
+    'use strict';
+
+    function define_dice() {
+        var dice = {};
+        
+        /* Contains the defualt options. Random can be*/
+        var defualtOptions = {
+            random: function(min, max) {
+                min = Math.ceil(min);
+                max = Math.floor(max);
+                return Math.floor(Math.random() * (max - min + 1)) + min;
+            }
+        };
+        //merges the defualt options with the new options.
+        //it overwrites defualt with newInfo, but keeps the options in defualt if it dosen't exist in newInfo
+        var merge = function(defualt, newInfo) {
+            var result = {};
+            for (var attrname in defualt) {
+                result[attrname] = defualt[attrname];
+            }
+            for (attrname in newInfo) {
+                result[attrname] = newInfo[attrname];
+            }
+            return result;
+        };
+        // with an object of added defualt options and an object of user options, generates an object with the final functions.
+        // Use:in functions, you want to use the defualt options but each function has its own added options. This is the addedDefualt parameter
+        // then, the user specified options fo in the userOptions. essenaly, userOptions overrides addedDefualt, which overrides defualtOptions,
+        // but makes it so that you know it will at least have all the defualtOptions and all the addedDefualt options, so the user
+        // can only specift some userOptions and use the defualt for others.
+        var getFinalOptions = function(addedDefualt, userOptions) {
+            return merge(merge(defualtOptions, addedDefualt), userOptions);
+        };
+        dice.version = "0.1.0";
+        //returns an random integer between min and max.
+        dice.integer = function(min, max, userOptions) {
+            var option;
+            
+            if (max === null) {
+                //only one parameter was provided, so we assume that min and max are inside a options object.
+                option = min;
+            } else if (userOptions === null) {
+                //two parameters were provided, so assume that min is acually pool(a list of numbers to choose from), and max is atually the options.
+                option = max;
+                option.pool = min;
+            } else {
+                option = userOptions;
+                option.min = min;
+                option.max = max;
+            }
+            
+            if (option.pool !== null) {
+                //since the pool is defined, we can assume that the user wants to choose from a pool of integers, rather than a range.
+                option = merge(defualtOptions, option);
+                return dice.choose(option.pool);
+            } else {
+                //user wants a range since pool is not defined.
+                option = getFinalOptions({
+                    min:-1000,
+                    max:1000
+                }, option);
+            }
+        };
+        return dice;
+    }
+    //define globally if it doesn't already exist
+    if (typeof(dice) === 'undefined') {
+        window.dice = define_dice();
+    }
+    else {
+        console.log("a variable named 'dice' was already defined. Therefore DiceJS was not included. "
+        + "Please rename all variables with the name of 'dice'");
+    }
+})(window);
+</script>
