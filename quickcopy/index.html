@@ -1,4 +1,3 @@
-String.prototype.replaceAll = function(search, replacement) { var target = this; return target.replace(new RegExp(search, 'g'), replacement); };
 <!DOCTYPE html>
 <html lang="en">
 
@@ -88,22 +87,41 @@ String.prototype.replaceAll = function(search, replacement) { var target = this;
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <h2 class="section-heading">Quick Copy Code Snippets</h2>
-                    <p class="text-muted">This page houses some of the code snipptes commonly use, so they can be copyied quickly</p>
-                    <b>GetQuery <a class="clipboard" data-clipboard-target="#getquery">Copy</a> | <a href="http://stackoverflow.com/a/901144/5511561">This function's source</a></b><!-- Trigger -->
+                    <p class="text-muted">This page houses some of the code snipptes I commonly use, so they can be copyied quickly</p>
+                    <p>Contents: <a href="#getquery-a">GetQuery(JS)</a> | <a href="#replaceall-a">replaceAll(JS)</a> | <a href="#htmlredirect-a">Html Redirect(HTML)</a></p>
+                    <hr>
+                    <a name="getquery-a"></a>
+                    <b>GetQuery (Javascript) <a class="clipboard" data-clipboard-target="#getquery">Copy</a> | <a href="#getquery-a">Permalink</a> | <a href="http://stackoverflow.com/a/901144/5511561">This function's source</a></b><!-- Trigger -->
 
-                    <pre><code class="language-javascript" id="getquery">
-                            //http://stackoverflow.com/a/901144/5511561
-                            function getQuery(name) {
-                                var  url = window.location.href;
-                                name = name.replace(/[\[\]]/g, "\\$&");
-                                var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-                                    results = regex.exec(url);
-                                if (!results) return null;
-                                if (!results[2]) return '';
-                                return decodeURIComponent(results[2].replace(/\+/g, " "));
-                            }
+                    <pre><code class="language-javascript line-numbers" id="getquery">
+//http://stackoverflow.com/a/901144/5511561
+function getQuery(name) {
+    var  url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
                         </code></pre>
+                        <hr>
+                        <a name="replaceall-a"></a>
+<b>replaceAll (Javascript) <a class="clipboard" data-clipboard-target="#replaceall">Copy</a> | <a href="#replaceall-a">Permalink</a> | <a href="http://stackoverflow.com/a/17606289/5511561">This function's source</a></b><!-- Trigger -->
 
+                    <pre><code class="language-javascript line-numbers" id="replaceall">
+String.prototype.replaceAll = function(search, replacement) {
+    var target = this;
+    return target.replace(new RegExp(search, 'g'), replacement);
+};
+                        </code></pre>
+                        <hr>
+                        <a name="htmlredirect-a"></a>
+                        <b>Html Redirect (HTML) <a class="clipboard" data-clipboard-target="#htmlredirect">Copy</a> | <a href="#htmlredirect-a">Permalink</a> | <a href="http://stackoverflow.com/a/5411567/5511561">This function's source</a></b><!-- Trigger -->
+
+                    <pre><code class="language-javascript line-numbers" id="htmlredirect">
+&lt;meta http-equiv="refresh" content="0; url=http://example.com/page/page.html" />
+                        </code></pre>
                 </div>
             </div>
         </div>
