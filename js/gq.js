@@ -1,4 +1,5 @@
-/* copyright 2016 Jeffrey Meng | MIT License | https://tldrlegal.com/license/mit-license#fulltext */
+//USE https://jeffkmeng.com/qc instead to copy functions
+//http://stackoverflow.com/a/901144/5511561
 function getQuery(name) {
     var  url = window.location.href;
     name = name.replace(/[\[\]]/g, "\\$&");
