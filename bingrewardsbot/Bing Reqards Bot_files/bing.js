@@ -9,7 +9,7 @@ function changeIframe() {
 function runSearch(){
   var count = document.getElementById('count').value;
   var searchQuery = createRandomWord();
-  document.getElementById('bingIframe').src = 'http://www.bing.com/search?q=' + searchQuery + '+&go=&qs=n&sk=&form=QBLH';
+  document.getElementById('bingIframe').src = 'https://www.bing.com/search?q=' + searchQuery + '+&go=&qs=n&sk=&form=QBLH';
   count = count - 1;
   document.getElementById('count').value = count;
   if (count > 0){
