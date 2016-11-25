@@ -16,9 +16,9 @@ function runSearch(){
     var timeToHold = Math.floor(Math.random() * 30 + 10);
     t = setTimeout("runSearch()", timeToHold * 1000);
   } else {
-    document.getElementById('bingIframe').src = 'http://www.bing.com/search?q=spoofee+deals&go=&qs=n&sk=&form=QBLH';
-    document.getElementById('bingIframe').src = 'http://www.google.com/search?hl=en&q=spoofee+deals&oq=spoofee+deals';
-    document.getElementById('bingIframe').src = 'http://www.bing.com/rewards/dashboard';
+    document.getElementById('bingIframe').src = 'https://www.bing.com/search?q=spoofee+deals&go=&qs=n&sk=&form=QBLH';
+    document.getElementById('bingIframe').src = 'https://www.google.com/search?hl=en&q=spoofee+deals&oq=spoofee+deals';
+    document.getElementById('bingIframe').src = 'https://www.bing.com/rewards/dashboard';
 	document.getElementById('count').disabled = false;
 	document.getElementById('count').style.backgroundColor = "#FFF";
 	document.getElementById('message').innerHTML = "<font color='green'><b>Finished!</b></font>";
