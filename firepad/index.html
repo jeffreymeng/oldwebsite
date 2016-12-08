@@ -60,6 +60,7 @@
             //// Create ACE
             var editor = ace.edit("firepad-container");
             editor.setTheme("ace/theme/monokai");
+            editor.setShowPrintMargin(false);
             var session = editor.getSession();
             session.setUseWrapMode(true);
             session.setUseWorker(false);
